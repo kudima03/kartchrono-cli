@@ -6,8 +6,13 @@ on:
       - '*.*.*'
 
 jobs:
+  test:
+    name: Test
+    uses: ./.github/workflows/build-and-test.yml
+
   native-linux:
     name: Native ${{ matrix.rid }}
+    needs: [test]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -44,6 +49,7 @@ jobs:
 
   native-macos:
     name: Native ${{ matrix.rid }}
+    needs: [test]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -76,6 +82,7 @@ jobs:
 
   native-windows:
     name: Native win-x64
+    needs: [test]
     runs-on: windows-latest
     defaults:
       run:
@@ -100,6 +107,7 @@ jobs:
 
   nuget:
     name: NuGet package
+    needs: [test]
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Native AOT binaries for `osx-x64`.
 
+### Changed
+
+- The release workflow now gates every build/publish job on the existing
+  `.NET build & test` workflow (format, csharpier, tests, coverage and mutation
+  gates), called as a reusable workflow, instead of publishing an untested tag.
+
 ## [0.1.0] - 2026-09-08
 
 ### Added
