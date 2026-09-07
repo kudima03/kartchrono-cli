@@ -43,16 +43,8 @@ jobs:
         path: kartchrono-*.zip
 
   native-macos:
-    name: Native ${{ matrix.rid }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: macos-latest
-            rid: osx-arm64
-          - os: macos-13
-            rid: osx-x64
+    name: Native osx-arm64
+    runs-on: macos-latest
     defaults:
       run:
         working-directory: ./src
@@ -63,15 +55,15 @@ jobs:
       with:
         dotnet-version: 10.x.x
     - name: Publish binary
-      run: dotnet publish KartChrono.Cli -f net10.0 -r ${{ matrix.rid }} -c Release -p:PublishAot=true --output ../publish/${{ matrix.rid }}
+      run: dotnet publish KartChrono.Cli -f net10.0 -r osx-arm64 -c Release -p:PublishAot=true --output ../publish/osx-arm64
     - name: Rename binary
-      run: mv ../publish/${{ matrix.rid }}/KartChrono.Cli ../publish/${{ matrix.rid }}/kartchrono
+      run: mv ../publish/osx-arm64/KartChrono.Cli ../publish/osx-arm64/kartchrono
     - name: Zip binary
-      run: zip -j ../kartchrono-${{ github.ref_name }}-${{ matrix.rid }}.zip ../publish/${{ matrix.rid }}/kartchrono
+      run: zip -j ../kartchrono-${{ github.ref_name }}-osx-arm64.zip ../publish/osx-arm64/kartchrono
     - name: Upload binary
       uses: actions/upload-artifact@v7
       with:
-        name: binary-${{ matrix.rid }}
+        name: binary-osx-arm64
         path: kartchrono-*.zip
 
   native-windows:
