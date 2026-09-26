@@ -63,11 +63,14 @@ public sealed record Command : IOutput
             _ => new HelpOutput(),
         };
 
+    private IOutput Limited =>
+        new TimeLimitedOutput(Chosen, new TimeoutSeconds(_arguments));
+
     public IAsyncEnumerator<IString> GetAsyncEnumerator(
         CancellationToken cancellationToken = default
     )
     {
-        return Chosen.GetAsyncEnumerator(cancellationToken);
+        return Limited.GetAsyncEnumerator(cancellationToken);
     }
 
     public override int GetHashCode()
