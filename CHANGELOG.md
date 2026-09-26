@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `--timeout <seconds>` now stops every command after the given time and exits with
+  code 0. It was documented in `--help` and the README but never parsed, so `live`,
+  `session` and `laps` waited for data forever. A value that is not a whole number of
+  seconds from 1 to 2147483 is rejected with exit code 1.
+
 ## [1.0.0] - 2026-09-08
 
 ### Added

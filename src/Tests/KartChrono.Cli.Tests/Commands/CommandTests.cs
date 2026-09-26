@@ -35,6 +35,20 @@ public sealed record CommandTests
         Assert.Equal(["0.1.0"], await Rendered("--help", "--version"));
     }
 
+    [Fact]
+    public async Task RendersWithinTimeout()
+    {
+        Assert.Equal(["0.1.0"], await Rendered("--version", "--timeout", "5"));
+    }
+
+    [Fact]
+    public async Task RejectsMalformedTimeout()
+    {
+        _ = await Assert.ThrowsAsync<ArgumentException>(() =>
+            Rendered("--version", "--timeout", "soon")
+        );
+    }
+
     private static async Task<IReadOnlyList<string>> Rendered(
         params IEnumerable<string> arguments
     )

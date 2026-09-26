@@ -1,5 +1,6 @@
 using KartChrono.Cli.Arguments;
 using Pure.Primitives.Abstractions.Bool;
+using Pure.Primitives.Abstractions.Number;
 using Pure.Primitives.Abstractions.String;
 using String = Pure.Primitives.String.String;
 
@@ -47,6 +48,37 @@ public sealed record ArgumentTests
         IBool present = new OptionPresence(new String(name), arguments);
 
         Assert.Equal(expected, present.BoolValue);
+    }
+
+    [Theory]
+    [InlineData(new[] { "live", "--track", "mayak" }, 0)]
+    [InlineData(new[] { "live", "--timeout", "3" }, 3)]
+    [InlineData(new[] { "--timeout", "1", "live" }, 1)]
+    [InlineData(new[] { "live", "--timeout", "2147483" }, 2147483)]
+    public void TakesTimeoutInSeconds(string[] arguments, int expected)
+    {
+        INumber<int> timeout = new TimeoutSeconds(arguments);
+
+        Assert.Equal(expected, timeout.NumberValue);
+    }
+
+    [Theory]
+    [InlineData("live --timeout")]
+    [InlineData("live --timeout --json")]
+    [InlineData("live --timeout 0")]
+    [InlineData("live --timeout -5")]
+    [InlineData("live --timeout 1.5")]
+    [InlineData("live --timeout soon")]
+    [InlineData("live --timeout 2147484")]
+    public void RejectsTimeoutThatIsNotPositiveWholeSeconds(string arguments)
+    {
+        INumber<int> timeout = new TimeoutSeconds(arguments.Split(' '));
+
+        ArgumentException error = Assert.Throws<ArgumentException>(() =>
+            timeout.NumberValue
+        );
+
+        Assert.Contains("--timeout", error.Message, StringComparison.Ordinal);
     }
 
     [Fact]
