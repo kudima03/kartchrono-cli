@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- Native AOT binaries for `osx-x64`. GitHub does not provide `macos-13` runners for this
+  repository, so the release workflow's `osx-x64` job could not run.
+
 ## [1.1.0] - 2026-09-27
 
 ### Fixed
