@@ -23,7 +23,7 @@ dotnet tool install -g KartChrono.Cli
 
 `dotnet tool install` fetches a framework-dependent package that runs on any platform with
 the .NET runtime installed. Standalone Native AOT binaries — no runtime required — are also
-published for `linux-x64`, `linux-arm64`, `osx-arm64`, `osx-x64` and `win-x64`, attached to
+published for `linux-x64`, `linux-arm64`, `osx-arm64` and `win-x64`, attached to
 each [release](https://github.com/kudima03/kartchrono-cli/releases).
 
 ## Usage
