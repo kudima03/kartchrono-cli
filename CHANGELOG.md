@@ -7,11 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Removed
-
-- Native AOT binaries for `osx-x64`. GitHub does not provide `macos-13` runners for this
-  repository, so the release workflow's `osx-x64` job could not run.
-
 ## [1.1.0] - 2026-09-27
 
 ### Fixed
@@ -20,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   code 0. It was documented in `--help` and the README but never parsed, so `live`,
   `session` and `laps` waited for data forever. A value that is not a whole number of
   seconds from 1 to 2147483 is rejected with exit code 1.
+
+### Removed
+
+- Native AOT binaries for `osx-x64`. GitHub does not provide `macos-13` runners for this
+  repository, so the release workflow's `osx-x64` job could not run.
 
 ## [1.0.0] - 2026-09-08
 
