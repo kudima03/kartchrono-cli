@@ -10,7 +10,7 @@
     <RootNamespace>KartChrono</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Pure.Primitives" Version="3.6.5" />
+    <PackageReference Include="Pure.Primitives" Version="3.7.0" />
     <PackageReference Include="Pure.Primitives.Number.Operations" Version="1.5.0" />
   </ItemGroup>
   <ItemGroup>
