@@ -94,7 +94,7 @@ public sealed record JsonOutputTests
 
         await foreach (IString line in output)
         {
-            lines.Add(JsonDocument.Parse(line.TextValue).RootElement.Clone());
+            lines.Add(JsonElement.Parse(line.TextValue));
         }
 
         return lines;
