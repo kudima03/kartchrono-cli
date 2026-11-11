@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-11
+
+### Added
+
+- .NET 11 (`net11.0`) support: the `KartChrono.Cli` package now also targets `net11.0`.
+
+### Changed
+
+- Updated `Pure.Primitives` to the .NET 11 releases.
+
 ## [1.1.0] - 2026-09-27
 
 ### Fixed
